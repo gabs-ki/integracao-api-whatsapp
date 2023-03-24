@@ -4,9 +4,9 @@
 
 // const contatos = await procurarContatosApi('11987876567')
 
-import { procurarContatosApi } from "./backendapi.js"
+// import { contatos } from "../javascript/contatos.js"
 
-let contatos = await procurarContatosApi('11987876567')
+// const contatos = await procurarContatosApi('11987876567')
 
 const apagar = () => {
     const tela = document.getElementById('container__mensagens')
@@ -244,7 +244,7 @@ const criarEntradaMensagens = () => {
     return entrada
 }
 
-const carregarContatos =  () => {
+const carregarContatos =  (indice) => {
     const container = document.getElementById('contatos')
 
     const geracaoContatos = contatos.map(criarContato)
