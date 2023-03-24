@@ -3,34 +3,30 @@ var listaContatos = require('../contatos.js')
 
 let contatos = listaContatos.contatos['whats-users']
 
-const getContato = function(numero, indice) {
+const getContato = function(numero) {
     let numeroContato = numero
-    let contatosJson = {}
+    let contatosJson
+    let contatosArray = []
     let status
 
-    contatos.forEach(function (numeroIdentificador){
+    listaContatos.contatos['whats-users'].forEach(function (numeroIdentificador){
 
-        if(numeroContato == numeroIdentificador.number && numeroContato != undefined) {
-                contatosJson = {
-                    contatos: numeroIdentificador.contacts
-                }
+        if(numeroContato == numeroIdentificador.number) {
+                numeroIdentificador.contacts.forEach(function(contato){
+                    contatosArray.push(contato)
+                })
                 
-        } else {
-            status = false
-        }
+        } 
         
     })
-        
-    
 
-    if (contatosJson == null) {
-        status = false
+    if (numeroContato.length > 0) {
+        contatosJson = {}
+        contatosJson.contatos = contatosArray
+    }
         
-    } else {
-        status = contatosJson
-        
-    } 
-    return status
+    return contatosJson
+
     
 }
 

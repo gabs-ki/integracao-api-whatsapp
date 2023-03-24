@@ -1,12 +1,13 @@
 'use strict'
 
-// import { procurarContatosApi } from "./backendapi.js"
+import { procurarContatosApi } from "./backendapi.js"
 
 // const contatos = await procurarContatosApi('11987876567')
 
 // import { contatos } from "../javascript/contatos.js"
 
-// const contatos = await procurarContatosApi('11987876567')
+const contatoss = await procurarContatosApi('11966578996')
+
 
 const apagar = () => {
     const tela = document.getElementById('container__mensagens')
@@ -35,7 +36,7 @@ const criarContato = (contato, indice) => {
     
     const foto = document.createElement('img')
     foto.classList.add('contato__img')
-    foto.src = contato.image
+    foto.src = contato.img
     foto.setAttribute("alt", "foto_de_perfil")
 
     const titulo = document.createElement('h5')
@@ -56,8 +57,6 @@ const criarContato = (contato, indice) => {
         container.replaceChildren(criarHeader(indice), criarChat(indice), criarEntradaMensagens())
         apagar()
         subir()
-        
-        
         
     })
 
@@ -244,10 +243,21 @@ const criarEntradaMensagens = () => {
     return entrada
 }
 
-const carregarContatos =  (indice) => {
+// const contatos = () => {
+//     let dd = procurarContatosApi('11966578996')
+//     let aa = []
+//     aa.push(dd)
+//     return aa
+// }
+
+const contatos = () => {
+
+}
+
+const carregarContatos =  () => {
     const container = document.getElementById('contatos')
 
-    const geracaoContatos = contatos.map(criarContato)
+    const geracaoContatos = contatoss.map(criarContato)
 
     container.replaceChildren(...geracaoContatos)
 }
