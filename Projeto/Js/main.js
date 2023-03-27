@@ -5,7 +5,7 @@ let contatos = listaContatos.contatos['whats-users']
 
 const getContato = function(numero) {
     let numeroContato = numero
-    let contatosJson
+    let contatosJson = false
     let contatosArray = []
     let status
 
@@ -29,6 +29,9 @@ const getContato = function(numero) {
 
     
 }
+
+
+
 
 module.exports = {
     getContato

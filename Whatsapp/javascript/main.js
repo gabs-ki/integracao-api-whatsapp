@@ -2,11 +2,24 @@
 
 import { procurarContatosApi } from "./backendapi.js"
 
+// const contatos = await procurarContatosApi('11966578996')
+
 // const contatos = await procurarContatosApi('11987876567')
 
 // import { contatos } from "../javascript/contatos.js"
 
-const contatoss = await procurarContatosApi('11966578996')
+// import { contatos } from "../../Projeto/contatos.js"
+
+const contatos = await procurarContatosApi('11966578996')
+
+// const contatosFunc = async function (contato) {
+//     let sla = contato
+
+//     const sla2 = await procurarContatosApi('11966578996')
+//     sla2
+
+// }
+
 
 
 const apagar = () => {
@@ -29,45 +42,68 @@ const subir = () => {
     
 }
 
-const criarContato = (contato, indice) => {
-    const cardContato = document.createElement('div')
-    cardContato.classList.add('contato')
-    cardContato.id = 'adicionar'
-    
-    const foto = document.createElement('img')
-    foto.classList.add('contato__img')
-    foto.src = contato.img
-    foto.setAttribute("alt", "foto_de_perfil")
+const desempacotarArray = () => {
 
-    const titulo = document.createElement('h5')
-    titulo.classList.add('nome__contato')
-    titulo.textContent = contato.name
+    let arrayDois = []
+    let jasonDois = {}
 
-    const status = document.createElement('p')
-    status.classList.add('status__contato')
-    status.textContent = contato.description
+    contatos.forEach((array) => {
+        jasonDois = {
+            name : array.name,
+            description : array.description,
+            image : array.image,
+            messages : array.messages
+        }
 
-    const hora = document.createElement('p')
-    hora.classList.add('hora')
-    hora.textContent = contato.time
+        arrayDois.push(jasonDois)
 
-    cardContato.addEventListener('click', () =>{
-        let container = document.getElementById('container')
-       
-        container.replaceChildren(criarHeader(indice), criarChat(indice), criarEntradaMensagens())
-        apagar()
-        subir()
-        
     })
 
-    cardContato.append(
-        foto,
-        hora,
-        titulo,
-        status,
-        
-    )
+    return arrayDois
+}
 
+const criarContato = (contato, indice) => {
+
+    const cardContato = document.createElement('div')
+        cardContato.classList.add('contato')
+        cardContato.id = 'adicionar'
+
+        const foto = document.createElement('img')
+        foto.classList.add('contato__img')
+        foto.src = contatos
+        foto.setAttribute("alt", "foto_de_perfil")
+    
+        const titulo = document.createElement('h5')
+        titulo.classList.add('nome__contato')
+        titulo.textContent = contatos[indice].contatos.name
+
+        const status = document.createElement('p')
+        status.classList.add('status__contato')
+        status.textContent = contato.description
+    
+        const hora = document.createElement('p')
+        hora.classList.add('hora')
+        hora.textContent = contato.time
+    
+
+        cardContato.addEventListener('click', () =>{
+            let container = document.getElementById('container')
+           
+            container.replaceChildren(criarHeader(indice), criarChat(indice), criarEntradaMensagens())
+            apagar()
+            subir()
+            
+        })
+    
+        cardContato.append(
+            foto,
+            hora,
+            titulo,
+            status,
+            
+        )
+
+    
     return cardContato
 
 }
@@ -148,7 +184,7 @@ const criarChat = (indice) => {
     const conversa = document.createElement('div')
     conversa.classList.add('mensagens')
 
-    contatos[indice].messages.forEach((mensagens) => {
+    contatos.forEach((mensagens) => {
 
         const mensagemDireita = document.createElement('div')
         mensagemDireita.classList.add('mensagem__direita')
@@ -250,14 +286,14 @@ const criarEntradaMensagens = () => {
 //     return aa
 // }
 
-const contatos = () => {
 
-}
 
 const carregarContatos =  () => {
+
+    console.log(contatos)
     const container = document.getElementById('contatos')
 
-    const geracaoContatos = contatoss.map(criarContato)
+    const geracaoContatos = contatos.map(criarContato)
 
     container.replaceChildren(...geracaoContatos)
 }

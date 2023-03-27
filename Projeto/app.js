@@ -27,7 +27,7 @@ app.get('/v1/senai/contatos/numero/:digitos', cors(), async function(request, re
 
     let digitosContatos = request.params.digitos
 
-    if(digitosContatos.length != 11 || isNaN(digitosContatos) || digitosContatos == undefined || digitosContatos == ''){
+    if( digitosContatos == null || digitosContatos.length < 11 || isNaN(digitosContatos) || digitosContatos == undefined || digitosContatos == ''){
 
         statusCode == 400
 
@@ -35,7 +35,7 @@ app.get('/v1/senai/contatos/numero/:digitos', cors(), async function(request, re
 
     } else {
         let contatos = contatosDoBack.getContato(digitosContatos)
-        if (contatos) {
+        if (digitosContatos) {
             statusCode = 200
             dadosContatos = contatos
         } else {

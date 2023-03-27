@@ -18,7 +18,7 @@
                                           {
                                             "name": "Ana Maria",
                                             "description": "Frontend Developer",
-                                            "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F26880929015962936%2F&psig=AOvVaw3OhqmC-ilCtOilosvB2PGW&ust=1679764322563000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKCOsO-H9f0CFQAAAAAdAAAAABAJ",
+                                            "image": "img/contact1.png",
                                             "messages": [
                                               {
                                                 "sender": "me",
