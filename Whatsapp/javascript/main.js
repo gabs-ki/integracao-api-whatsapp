@@ -10,7 +10,9 @@ import { procurarContatosApi } from "./backendapi.js"
 
 // import { contatos } from "../../Projeto/contatos.js"
 
-const contatos = await procurarContatosApi('11966578996')
+const contatoss = await procurarContatosApi('11966578996')
+
+const contatos = contatoss[0].contatos
 
 // const contatosFunc = async function (contato) {
 //     let sla = contato
@@ -68,22 +70,25 @@ const criarContato = (contato, indice) => {
         cardContato.classList.add('contato')
         cardContato.id = 'adicionar'
 
+
+
         const foto = document.createElement('img')
         foto.classList.add('contato__img')
-        foto.src = contatos
+        foto.src = contatos[indice].image
         foto.setAttribute("alt", "foto_de_perfil")
     
         const titulo = document.createElement('h5')
         titulo.classList.add('nome__contato')
-        titulo.textContent = contatos[indice].contatos.name
+        titulo.textContent = contatos[indice].name
 
         const status = document.createElement('p')
         status.classList.add('status__contato')
-        status.textContent = contato.description
+        status.textContent = contatos[indice].description
+        
     
         const hora = document.createElement('p')
         hora.classList.add('hora')
-        hora.textContent = contato.time
+        hora.textContent = contatos.time
     
 
         cardContato.addEventListener('click', () =>{
@@ -184,7 +189,7 @@ const criarChat = (indice) => {
     const conversa = document.createElement('div')
     conversa.classList.add('mensagens')
 
-    contatos.forEach((mensagens) => {
+    contatoss[0].contatos[indice].messages.forEach((mensagens) => {
 
         const mensagemDireita = document.createElement('div')
         mensagemDireita.classList.add('mensagem__direita')
@@ -224,7 +229,7 @@ const criarChat = (indice) => {
                 mensagemDireita
             )
             
-        } else if (mensagens.sender == contatos[indice].name) {
+        } else if (mensagens.sender == contatoss[0].contatos[indice].name) {
             conteudoEsquerda.classList.add('mensagem')
             conteudoEsquerda.textContent = mensagens.content
 
@@ -293,7 +298,7 @@ const carregarContatos =  () => {
     console.log(contatos)
     const container = document.getElementById('contatos')
 
-    const geracaoContatos = contatos.map(criarContato)
+    const geracaoContatos = contatoss[0].contatos.map(criarContato)
 
     container.replaceChildren(...geracaoContatos)
 }
